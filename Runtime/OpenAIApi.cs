@@ -36,20 +36,14 @@ namespace OpenAI
         }
 
         /// OpenAI API base path for requests.
-        private const string DEFAULT_BASE_PATH = "https://api.openai.com/v1";
-
-        private string basePath = DEFAULT_BASE_PATH;
+        private string basePath = Configuration.BasePath;
 
         /// default BASE_PATH = "https://api.openai.com/v1"
-        public OpenAIApi(string apiKey = null, string organization = null, string newPath = DEFAULT_BASE_PATH)
+        public OpenAIApi(string apiKey = null, string organization = null)
         {
             if (apiKey != null)
             {
                 configuration = new Configuration(apiKey, organization);
-            }
-            if (newPath != DEFAULT_BASE_PATH)
-            {
-                basePath = newPath;
             }
         }
         

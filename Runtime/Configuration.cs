@@ -10,6 +10,15 @@ namespace OpenAI
     {
         public Auth Auth { get; }
         
+        /// For getting custom base path
+        public class BasePathClass
+        {
+            public string BasePath { get; set; }
+        }
+
+        private BasePathClass basePathObj;
+        public string BasePath => basePathObj.BasePath;
+        
         /// Used for serializing and deserializing PascalCase request object fields into snake_case format for JSON. Ignores null fields when creating JSON strings.
         private readonly JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
         {
@@ -20,7 +29,7 @@ namespace OpenAI
             }
         };
         
-        public Configuration(string apiKey = null, string organization = null)
+        public Configuration(string apiKey = null, string organization = null, string basePath = "https://api.openai.com/v1")
         {
             if (apiKey == null)
             {
@@ -31,6 +40,7 @@ namespace OpenAI
                 {
                     var json = File.ReadAllText(authPath);
                     Auth = JsonConvert.DeserializeObject<Auth>(json, jsonSerializerSettings);
+                    basePathObj = JsonConvert.DeserializeObject<BasePath>(json, jsonSerializerSettings);
                 }
                 else
                 {
@@ -44,6 +54,10 @@ namespace OpenAI
                     ApiKey = apiKey,
                     Organization = organization
                 };
+                BasePath = new BasePathClass()
+                {
+                    BasePath = basePath
+                }
             }
         }
     }
