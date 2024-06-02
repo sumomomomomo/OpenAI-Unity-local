@@ -40,7 +40,7 @@ namespace OpenAI
                 {
                     var json = File.ReadAllText(authPath);
                     Auth = JsonConvert.DeserializeObject<Auth>(json, jsonSerializerSettings);
-                    basePathObj = JsonConvert.DeserializeObject<BasePath>(json, jsonSerializerSettings);
+                    basePathObj = JsonConvert.DeserializeObject<BasePathClass>(json, jsonSerializerSettings);
                 }
                 else
                 {
@@ -54,10 +54,10 @@ namespace OpenAI
                     ApiKey = apiKey,
                     Organization = organization
                 };
-                BasePath = new BasePathClass()
+                basePathObj = new BasePathClass()
                 {
                     BasePath = basePath
-                }
+                };
             }
         }
     }

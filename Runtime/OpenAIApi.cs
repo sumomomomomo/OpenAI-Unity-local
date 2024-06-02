@@ -36,7 +36,13 @@ namespace OpenAI
         }
 
         /// OpenAI API base path for requests.
-        private string basePath = Configuration.BasePath;
+        private string basePath
+        {
+            get
+            {
+                return Configuration.BasePath;
+            }
+        }
 
         /// default BASE_PATH = "https://api.openai.com/v1"
         public OpenAIApi(string apiKey = null, string organization = null)
@@ -78,7 +84,7 @@ namespace OpenAI
                 var asyncOperation = request.SendWebRequest();
 
                 while (!asyncOperation.isDone) await Task.Yield();
-                
+                Debug.Log(request.downloadHandler.text);
                 data = JsonConvert.DeserializeObject<T>(request.downloadHandler.text, jsonSerializerSettings);
             }
             
