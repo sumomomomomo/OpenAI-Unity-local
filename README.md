@@ -1,5 +1,6 @@
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/sgt3v.svg?style=social&label=Follow%20%40sgt3v)](https://twitter.com/sgt3v)
 
+Edited by 323 Studios for use in Sojourner
 
 ## OpenAI Unity Package
 An unofficial Unity package that allows you to use the OpenAI API directly in the Unity game engine.
@@ -18,36 +19,24 @@ To import the package, follow these steps:
 - Open Unity 2019 or later
 - Go to `Window > Package Manager`
 - Click the `+` button and select `Add package from git URL`
-- Paste the repository URL https://github.com/srcnalt/OpenAI-Unity.git and click `Add`
-
-### Setting Up Your OpenAI Account
-To use the OpenAI API, you need to have an OpenAI account. Follow these steps to create an account and generate an API key:
-
-- Go to https://openai.com/api and sign up for an account
-- Once you have created an account, go to https://beta.openai.com/account/api-keys
-- Create a new secret key and save it
+- Paste the repository URL https://github.com/sumomomomomo/OpenAI-Unity-local.git and click `Add`
 
 ### Saving Your Credentials
-To make requests to the OpenAI API, you need to use your API key and organization name (if applicable). To avoid exposing your API key in your Unity project, you can save it in your device's local storage.
+To make requests to the OpenAI API, you need to use your API key, and provide a url to the path of the OpenAI API provider.
 
 To do this, follow these steps:
 
 - Create a folder called .openai in your home directory (e.g. `C:User\UserName\` for Windows or `~\` for Linux or Mac)
 - Create a file called `auth.json` in the `.openai` folder
-- Add an api_key field and a organization field (if applicable) to the auth.json file and save it
+- Add an api_key field to the auth.json file and save it (If you are here for testing our game, use "orbital" as the api_key without quotation marks. Remember to use the url we provide in the readme)
+- Add a base_path to the Chat Completions API
 - Here is an example of what your auth.json file should look like:
 
 ```json
 {
-    "api_key": "sk-...W6yi",
-    "organization": "org-...L7W"
+    "api_key": "orbital",
+    "organization": "http://127.0.0.1:5000/v1"
 }
-```
-
-You can also pass your API key into `OpenAIApi` ctor when creating an instance of it but again, this is not recommended!
-
-```csharp
-var openai = new OpenAIApi("sk-Me8...6yi");
 ```
 
 **IMPORTANT:** Your API key is a secret. 
