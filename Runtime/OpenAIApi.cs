@@ -228,7 +228,7 @@ namespace OpenAI
         /// </summary>
         /// <param name="request">See <see cref="CreateChatCompletionRequest"/></param>
         /// <returns>See <see cref="CreateChatCompletionResponse"/></returns>
-        public async Task<CreateChatCompletionResponse> CreateChatCompletion(CreateChatCompletionRequest request)
+        public virtual async Task<CreateChatCompletionResponse> CreateChatCompletion(CreateChatCompletionRequest request)
         {
             var path = $"{basePath}/chat/completions";
             var payload = CreatePayload(request);
